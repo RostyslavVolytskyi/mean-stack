@@ -24,6 +24,16 @@ module.exports = function (app, express, io){
 
   var api = express.Router();
 
+  api.get('/all_stories', function(req, res){
+    Story.find({}, function(err, stories){
+      if(err) {
+        res.send(err);
+        return;
+      }
+      res.json(stories);
+    });
+  });
+
   //Post to DB
   api.post('/signup', function(req, res){
 
